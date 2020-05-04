@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <!-- Link Fontasesome -->
+  <script src="https://kit.fontawesome.com/c61ad57674.js" crossorigin="anonymous"></script>
+
+  <!-- Css Bootstrap and Css file -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+  <title>Chatting | Club</title>
+</head>
+<body>
+
+  <!-- Main Section -->
+  <main id="main-section">
+    <div class="row">
+      <div class="col-md-3 col-lg-2" id="left">
+        <div class="d-flex flex-column bd-highlight">
+          <h1><i class="fas fa-ellipsis-h"></i>Chat</h1>
+          <h5><i class="fas fa-user"></i>Welcome: John</h5>
+          <p><i class="fas fa-plus"></i>New Channel
+          </p>
+          <input type="text" name="channel-name" autocomplete="off" placeholder="New Channel" required>
+          <p><i class="far fa-star"></i>Favorite</p>
+          <p class="mb-auto bd-highlight"><i class="fas fa-history"></i>History</p>
+          <p><i class="fas fa-info-circle"></i>About us</p>
+          <p><i class="fas fa-sign-out-alt"></i>Logout</p>
+        </div>
+      </div>
+      <div class="col-md-9 col-lg-10" id="right">
+        Welcome
+      </div>
+    </div>
+
+  </main>
+  <!-- User Registeration Form -->
+
+</body>
+</html>
