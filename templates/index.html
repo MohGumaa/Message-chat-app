@@ -8,6 +8,9 @@
   <!-- Link Fontasesome -->
   <script src="https://kit.fontawesome.com/c61ad57674.js" crossorigin="anonymous"></script>
 
+  <!-- Google font -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+
   <!-- Css Bootstrap and Css file -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
@@ -19,6 +22,9 @@
 
   <!-- Main Section -->
   <main id="main-section">
+    <div class="menu-btn">
+      <i class="fas fa-bars fa-2x"></i>
+    </div>
     <div class="row">
       <!-- Left side Nag and icon -->
       <div class="col-md-3 col-lg-2" id="left">
@@ -30,72 +36,134 @@
           <p><i class="far fa-star"></i>Favorite</p>
           <p><i class="fas fa-history"></i>History</p>
           <p class="mt-auto"><i class="fas fa-info-circle"></i>About us</p>
-          <p><i class="fas fa-sign-out-alt"></i>Logout</p>
+          <p class="mb-4"><i class="fas fa-sign-out-alt"></i>Logout</p>
         </div>
       </div>
 
       <!-- Right side message -->
-      <div class="col-md-9 col-lg-10 border rounded-left" id="right">
-        <h1 class="header border">Computer Science Channel</h1>
-        <div class="message">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis aliquid nesciunt nulla vitae error voluptatem hic aspernatur, obcaecati, ab ratione quos eius atque animi exercitationem maxime laboriosam ducimus officiis provident voluptates praesentium suscipit velit? Amet similique quae dolore saepe quasi. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam harum, placeat deleniti molestiae similique optio voluptate dolor dolorem labore suscipit impedit, molestias voluptatibus aspernatur quam officia alias doloribus non nesciunt. Doloremque ad dolore, ipsum dolorum sunt error minus a sapiente.</p>
-          <p>Float left on all viewport sizes</p>
-          <p>Float left on all viewport sizes</p>
-          <p class="right">Float left on all viewport sizes</p>
-          <p class="right">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti, sed! Facilis tempore repudiandae dolorem ipsam consequatur iste natus, incidunt nostrum corporis eum, eius, delectus quis aut veritatis recusandae voluptas quas!</p>
-          <p>Float left on all viewport sizes</p>
-          <p>Float left on all viewport sizes</p>
-          <p>Float left on all viewport sizes</p>
-          <p>Float left on all viewport sizes</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam harum, placeat deleniti molestiae similique optio voluptate dolor dolorem labore suscipit impedit, molestias voluptatibus aspernatur quam officia alias doloribus non nesciunt. Doloremque ad dolore, ipsum dolorum sunt error minus a sapiente.</p>
-          <p>Float left on all viewport sizes</p>
-          <p>Float left on all viewport sizes</p>
-          <p class="right">Float left on all viewport sizes</p>
-          <p class="right">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti, sed! Facilis tempore repudiandae dolorem ipsam consequatur iste natus, incidunt nostrum corporis eum, eius, delectus quis aut veritatis recusandae voluptas quas!</p>
-          <p>Float left on all viewport sizes</p>
-          <p>Float left on all viewport sizes</p>
-          <p>Float left on all viewport sizes</p>
-          <p>Float left on all viewport sizes</p>
+      <div class="col-md-9 col-lg-10" id="right">
+        <h1 class="header">Computer Science Channel</h1>
 
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam harum, placeat deleniti molestiae similique optio voluptate dolor dolorem labore suscipit impedit, molestias voluptatibus aspernatur quam officia alias doloribus non nesciunt. Doloremque ad dolore, ipsum dolorum sunt error minus a sapiente.</p>
-          <p>Float left on all viewport sizes</p>
-          <p>Float left on all viewport sizes</p>
-          <p class="right">Float left on all viewport sizes</p>
-          <p class="right">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti, sed! Facilis tempore repudiandae dolorem ipsam consequatur iste natus, incidunt nostrum corporis eum, eius, delectus quis aut veritatis recusandae voluptas quas!</p>
-          <p>Float left on all viewport sizes</p>
-          <p>Float left on all viewport sizes</p>
-          <p>Float left on all viewport sizes</p>
-          <p>Float left on all viewport sizes</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam harum, placeat deleniti molestiae similique optio voluptate dolor dolorem labore suscipit impedit, molestias voluptatibus aspernatur quam officia alias doloribus non nesciunt. Doloremque ad dolore, ipsum dolorum sunt error minus a sapiente.</p>
-          <p>Float left on all viewport sizes</p>
-          <p>Float left on all viewport sizes</p>
-          <p class="right">Float left on all viewport sizes</p>
-          <p class="right">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti, sed! Facilis tempore repudiandae dolorem ipsam consequatur iste natus, incidunt nostrum corporis eum, eius, delectus quis aut veritatis recusandae voluptas quas!</p>
-          <p>Float left on all viewport sizes</p>
-          <p>Float left on all viewport sizes</p>
-          <p>Float left on all viewport sizes</p>
-          <p>Float left on all viewport sizes</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam harum, placeat deleniti molestiae similique optio voluptate dolor dolorem labore suscipit impedit, molestias voluptatibus aspernatur quam officia alias doloribus non nesciunt. Doloremque ad dolore, ipsum dolorum sunt error minus a sapiente.</p>
-          <p>Float left on all viewport sizes</p>
-          <p>Float left on all viewport sizes</p>
-          <p class="right">Float left on all viewport sizes</p>
-          <p class="right">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti, sed! Facilis tempore repudiandae dolorem ipsam consequatur iste natus, incidunt nostrum corporis eum, eius, delectus quis aut veritatis recusandae voluptas quas!</p>
-          <p>Float left on all viewport sizes</p>
-          <p>Float left on all viewport sizes</p>
-          <p>Float left on all viewport sizes</p>
-          <p>Float left on all viewport sizes</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam harum, placeat deleniti molestiae similique optio voluptate dolor dolorem labore suscipit impedit, molestias voluptatibus aspernatur quam officia alias doloribus non nesciunt. Doloremque ad dolore, ipsum dolorum sunt error minus a sapiente.</p>
-          <p>Float left on all viewport sizes</p>
-          <p>Float left on all viewport sizes</p>
-          <p class="right">Float left on all viewport sizes</p>
-          <p class="right">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti, sed! Facilis tempore repudiandae dolorem ipsam consequatur iste natus, incidunt nostrum corporis eum, eius, delectus quis aut veritatis recusandae voluptas quas!</p>
-          <p>Float left on all viewport sizes</p>
-          <p>Float left on all viewport sizes</p>
-          <p>Float left on all viewport sizes</p>
-          <p>Float left on all viewport sizes</p>
+        <div class="chat">
+          <div class="msg">
+            <h5><strong>Mohamed Gumaa</strong></h5>
+            <p>Hello. How are you today?</p>
+            <span class="time-right">11:00</span>
+          </div>
+
+          <div class="msg darker">
+            <h5 class="right"><strong>John</strong></h5>
+            <p>Hey! I'm fine. Thanks for asking!</p>
+            <span class="time-right">11:01</span>
+          </div>
+
+          <div class="msg">
+            <h5><strong>Mohamed Gumaa</strong></h5>
+            <p>Sweet! So, what do you wanna do today?</p>
+            <span class="time-right">11:02</span>
+          </div>
+
+          <div class="msg darker">
+            <p class="right"><strong>John</strong></p>
+            <p>Nah, I dunno. Play soccer.. or learn more coding perhaps?</p>
+            <span class="time-right">11:05</span>
+          </div>
+          <div class="msg">
+            <h5><strong>Mohamed Gumaa</strong></h5>
+            <p>Hello. How are you today?</p>
+            <span class="time-right">11:00</span>
+          </div>
+
+          <div class="msg darker">
+            <h5 class="right"><strong>John</strong></h5>
+            <p>Hey! I'm fine. Thanks for asking!</p>
+            <span class="time-right">11:01</span>
+          </div>
+
+          <div class="msg">
+            <h5><strong>Mohamed Gumaa</strong></h5>
+            <p>Sweet! So, what do you wanna do today?</p>
+            <span class="time-right">11:02</span>
+          </div>
+
+          <div class="msg darker">
+            <p class="right"><strong>John</strong></p>
+            <p>Nah, I dunno. Play soccer.. or learn more coding perhaps?</p>
+            <span class="time-right">11:05</span>
+          </div>
+          <div class="msg">
+            <h5><strong>Mohamed Gumaa</strong></h5>
+            <p>Hello. How are you today?</p>
+            <span class="time-right">11:00</span>
+          </div>
+
+          <div class="msg darker">
+            <h5 class="right"><strong>John</strong></h5>
+            <p>Hey! I'm fine. Thanks for asking!</p>
+            <span class="time-right">11:01</span>
+          </div>
+
+          <div class="msg">
+            <h5><strong>Mohamed Gumaa</strong></h5>
+            <p>Sweet! So, what do you wanna do today?</p>
+            <span class="time-right">11:02</span>
+          </div>
+
+          <div class="msg darker">
+            <p class="right"><strong>John</strong></p>
+            <p>Nah, I dunno. Play soccer.. or learn more coding perhaps?</p>
+            <span class="time-right">11:05</span>
+          </div><div class="msg">
+            <h5><strong>Mohamed Gumaa</strong></h5>
+            <p>Hello. How are you today?</p>
+            <span class="time-right">11:00</span>
+          </div>
+
+          <div class="msg darker">
+            <h5 class="right"><strong>John</strong></h5>
+            <p>Hey! I'm fine. Thanks for asking!</p>
+            <span class="time-right">11:01</span>
+          </div>
+
+          <div class="msg">
+            <h5><strong>Mohamed Gumaa</strong></h5>
+            <p>Sweet! So, what do you wanna do today?</p>
+            <span class="time-right">11:02</span>
+          </div>
+
+          <div class="msg darker">
+            <p class="right"><strong>John</strong></p>
+            <p>Nah, I dunno. Play soccer.. or learn more coding perhaps?</p>
+            <span class="time-right">11:05</span>
+          </div><div class="msg">
+            <h5><strong>Mohamed Gumaa</strong></h5>
+            <p>Hello. How are you today?</p>
+            <span class="time-right">11:00</span>
+          </div>
+
+          <div class="msg darker">
+            <h5 class="right"><strong>John</strong></h5>
+            <p>Hey! I'm fine. Thanks for asking!</p>
+            <span class="time-right">11:01</span>
+          </div>
+
+          <div class="msg">
+            <h5><strong>Mohamed Gumaa</strong></h5>
+            <p>Sweet! So, what do you wanna do today?</p>
+            <span class="time-right">11:02</span>
+          </div>
+
+          <div class="msg darker">
+            <p class="right"><strong>John</strong></p>
+            <p>Nah, I dunno. Play soccer.. or learn more coding perhaps?</p>
+            <span class="time-right">11:05</span>
+          </div>
         </div>
         <form action="">
-          <label for="">
-            <input type="text" name="" value="">
-          </label>
-          <button type="button" name="button">Submit</button>
+          <input type="text" class="message-input" placeholder="write message ...">
+          <button type="submit" class="form-submit"><i class="fa fa-paper-plane"></i></button>
+
+
         </form>
       </div>
     </div>
