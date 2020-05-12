@@ -28,7 +28,7 @@
       <!-- Left side Nag and icon -->
       <div class="col-md-3 col-lg-2" id="left">
         <h1><i class="fas fa-ellipsis-h"></i>Chat</h1>
-        <p class="mt-2"><i class="fas fa-user"></i>Welcome: John</p>
+        <p class="mt-2"><i class="fas fa-user"></i>Welcome: <strong></strong></p>
 
         <div class="d-flex flex-column mt-5">
           <p><i class="fas fa-plus"></i>New Channel</p>
@@ -36,6 +36,7 @@
           <p><i class="fas fa-history"></i>History</p>
           <p class="mt-auto"><i class="fas fa-info-circle"></i>About us</p>
           <p class="mb-4"><i class="fas fa-sign-out-alt"></i>Logout</p>
+          <p>Chat App, Copyright &copy; 2020</p>
         </div>
       </div>
 
@@ -161,14 +162,39 @@
         <form action="">
           <input type="text" class="message-input" placeholder="write message ...">
           <button type="submit" class="form-submit"><i class="fa fa-paper-plane"></i></button>
-
-
         </form>
       </div>
     </div>
   </main>
-  <!-- User Registeration Form -->
 
+  <!-- User Registeration Form -->
+  <div id="modal">
+    <div class="modal-content row">
+      <div class="text-content">
+        <h2>Chat brings us together,whereever you are</h2>
+        <p>
+          we stay connect to each other by bring all our communication and
+          tools in one place. Meet new people and interact with them Enjoy trip
+        </p>
+        <h3 class="mb-2">Features:</h3>
+        <ol  class="list-group list-group-flush">
+          <li class="list-group-item active">Register with your name to identify yourself.</li>
+          <li class="list-group-item">Navigate through between channel list.</li>
+          <li class="list-group-item">Create your own channel</li>
+          <li class="list-group-item">Join existing channels</li>
+        </ol>
+      </div>
+      <div id="login">
+        <div class="imgcontainer"><i class="fas fa-user 7x"></i></div>
+        <form id="userRegister">
+          <div class="form-group">
+            <input type="text" class="form-control" id="name" placeholder="Enter Name..." required autofocus autocomplete="off">
+          </div>
+          <button type="submit" id="submitUser" class="btn btn-block btn-primary">Login</button>
+        </form>
+      </div>
+    </div>
+  </div>
   <!-- Script -->
   <script src="{{ url_for('static', filename='index.js') }}"></script>
 </body>
