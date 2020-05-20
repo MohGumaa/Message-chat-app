@@ -36,7 +36,21 @@
           <h5>Welcome: <em>Smith</em></h5>
           <h3><i class="fas fa-comments"></i> Room Name:</h3>
           <h2 id="room-name">Python</h2>
-          <h3><i class="fas fa-users"></i> Channels</h3>
+          <h3><i class="fas fa-eye"></i> Channels</h3>
+
+          <!-- Room section with creation -->
+          <div class="form-control">
+            <input
+              type="text"
+              name="channel-name"
+              id="channel-name"
+              placeholder="Create a new Channel..."
+              required
+            />
+            <button type="submit" id="new-channel" class="btn">
+              <i class="fas fa-plus"></i>
+            </button>
+          </div>
           <ul id="rooms">
             <li>Public</li>
             <li>Social</li>
@@ -77,6 +91,46 @@
           />
           <button class="btn"><i class="fas fa-paper-plane"></i> Send</button>
         </form>
+      </div>
+    </div>
+
+    <!-- User Join Form -->
+    <div id="modal">
+      <div class="join-container">
+        <!-- Header Section -->
+        <header class="join-header">
+          <h1><i class="fab fa-battle-net"> WChat</i></h1>
+        </header>
+
+        <!-- Form Section -->
+        <section class="join-main">
+          <form id="join-form">
+            <div class="form-control">
+              <label for="username"><i class="fas fa-user"></i> Username</label>
+              <input
+                type="text"
+                name="username"
+                id="username"
+                placeholder="Enter username..."
+                required
+              />
+            </div>
+            <div class="form-control">
+              <label for="room">Room</label>
+              <select name="room" id="room">
+                <option disabled selected value=""
+                  >Choose Chatting Room
+                </option>
+                <option value="python">Python</option>
+                <option value="flask">Flask</option>
+                <option value="django">Django</option>
+                <option value="php">PHP</option>
+                <option value="javascript">JavaScript</option>
+              </select>
+            </div>
+            <button type="submit" class="btn">Join Chat</button>
+          </form>
+        </section>
       </div>
     </div>
 
