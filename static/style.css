@@ -44,6 +44,12 @@ a:hover {
   background: var(--light-color);
   color: var(--dark-color-a);
   padding: 5px 15px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: var(--light-color-tr);
+  color: #fff;
 }
 
 .menu-btn {
@@ -81,7 +87,7 @@ a:hover {
 
 .chat-main {
   display: grid;
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: auto auto;
 }
 
 .chat-sidebar {
@@ -103,7 +109,28 @@ a:hover {
 }
 
 .chat-sidebar h3 {
+  margin-bottom: 5px;
+}
+
+.chat-sidebar .form-control {
+  display: flex;
   margin-bottom: 15px;
+}
+
+.chat-sidebar .form-control input {
+  font-size: 14px;
+  padding: 5px;
+  height: 40px;
+  border: none;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+  flex: 1;
+}
+
+.chat-sidebar .form-control .btn {
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+  border-left: 1px solid #888;
 }
 
 .chat-sidebar ul li {
@@ -169,6 +196,63 @@ a:hover {
   border-left: 1px solid #888;
 }
 
+/* Join Part */
+#modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.9);
+  opacity: 1;
+  transition: all 0.5s ease-in-out;
+}
+
+/* Join Section */
+.join-container {
+  max-width: 500px;
+  margin: 80px auto;
+}
+
+.join-header {
+  text-align: center;
+  padding: 20px;
+  background-color: var(--dark-color-a);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.join-main {
+  padding: 30px;
+  background-color: var(--dark-color-b);
+}
+
+.join-main .form-control {
+  margin-bottom: 10px;
+}
+
+.join-main label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.join-main input[type="text"],
+select {
+  width: 100%;
+  height: 40px;
+  padding: 5px;
+  font-size: 1rem;
+}
+
+.join-main .btn {
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* Media Section */
+
 @media (max-width: 768px) {
   body {
     margin: 0;
@@ -214,6 +298,10 @@ a:hover {
 
   .chat-sidebar.show {
     transform: translateX(0px);
+  }
+
+  .chat-sidebar .form-control input {
+    font-size: 12px;
   }
 
   .chat-main .chat-messages div {
