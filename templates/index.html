@@ -12,11 +12,10 @@
     ></script>
 
     <!-- StyleSheet file -->
-    <!-- <link
+    <link
       rel="stylesheet"
       href="{{ url_for('static', filename='style.css') }}"
-    /> -->
-    <link rel="stylesheet" href="../static/style.css" />
+    />
     <title>WChat App</title>
   </head>
   <body>
@@ -33,7 +32,7 @@
       <main class="chat-main">
         <!-- Side section -->
         <side class="chat-sidebar">
-          <h5>Welcome: <em>Smith</em></h5>
+          <h5>Welcome: <em id="username-show">Smith</em></h5>
           <h3><i class="fas fa-comments"></i> Room Name:</h3>
           <h2 id="room-name">Python</h2>
           <h3><i class="fas fa-eye"></i> Channels</h3>
@@ -52,16 +51,14 @@
             </button>
           </div>
           <ul id="rooms">
-            <li>Public</li>
-            <li>Social</li>
-            <li>Computer</li>
-            <li>Math</li>
-            <li>Physcial</li>
+            {% for room in rooms %}
+              <li>{{ room| title}}</li>
+            {% endfor %}
           </ul>
         </side>
 
         <!-- Message Section -->
-        <div class="chat-messages">
+        <div id="chat-messages">
           <div class="message">
             <p class="message-name">John <span>9:31pm</span></p>
             <p class="text">
@@ -113,19 +110,19 @@
                 id="username"
                 placeholder="Enter username..."
                 required
+                autocomplete="off"
+                autofocus
               />
             </div>
             <div class="form-control">
               <label for="room">Room</label>
-              <select name="room" id="room">
+              <select name="room" id="room" required autocomplete="off">
                 <option disabled selected value=""
-                  >Choose Chatting Room
+                  >Please Choose Chatting Room
                 </option>
-                <option value="python">Python</option>
-                <option value="flask">Flask</option>
-                <option value="django">Django</option>
-                <option value="php">PHP</option>
-                <option value="javascript">JavaScript</option>
+                {% for room in rooms %}
+                  <option value="{{ room }}">{{ room|title }}</option>
+                {% endfor %}
               </select>
             </div>
             <button type="submit" class="btn">Join Chat</button>
@@ -135,19 +132,13 @@
     </div>
 
     <!-- SocketIO -->
-    <script
+    <!-- <script
       type="text/javascript"
       src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"
     ></script>
+    <script src="{{ url_for('static', filename='socketio.js') }}"></script> -->
     <script src="{{ url_for('static', filename='index.js') }}"></script>
-    <script src="{{ url_for('static', filename='socketio.js') }}"></script>
 
-    <script>
-      // Add event listener  to button click on small screen
-      document.querySelector(".menu-btn").addEventListener("click", () => {
-        // Add and remove class
-        document.querySelector(".chat-sidebar").classList.toggle("show");
-      });
-    </script>
+
   </body>
 </html>
