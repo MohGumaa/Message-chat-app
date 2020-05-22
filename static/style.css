@@ -52,13 +52,21 @@ a:hover {
   color: #fff;
 }
 
+.error-msg {
+  color: var(--error-color);
+}
+
+.success-msg {
+  color: var(--success-color);
+}
+
 .menu-btn {
   display: none;
   position: absolute;
   top: 20px;
   right: 10px;
   font-size: 1.6rem;
-  z-index: 2;
+  z-index: 1;
   cursor: pointer;
 }
 
@@ -87,7 +95,7 @@ a:hover {
 
 .chat-main {
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: 1fr 3fr;
   min-height: 70vh;
   max-height: 70vh;
 }
@@ -121,7 +129,7 @@ a:hover {
 
 .chat-sidebar .form-control input {
   font-size: 14px;
-  padding: 5px;
+  padding: 5px 2px;
   height: 40px;
   border: none;
   border-top-left-radius: 2px;
@@ -133,6 +141,7 @@ a:hover {
   border-top-right-radius: 2px;
   border-bottom-right-radius: 2px;
   border-left: 1px solid #888;
+  padding: 5px 10px;
 }
 
 .chat-sidebar ul li {
@@ -143,20 +152,20 @@ a:hover {
 #chat-messages {
   color: #000;
   padding: 10px;
-  max-height: 500px;
+  max-height: 430px;
   overflow-y: scroll;
 }
 
 #chat-messages .message {
   padding: 10px;
   background-color: var(--light-color);
-  margin: 0 10rem 0.8rem 0.3rem;
+  margin: 0 20rem 0.8rem 0.3rem;
   border-radius: 5px;
 }
 
 #chat-messages .message-mine {
   background-color: var(--light-color-tr);
-  margin: 0 0.3rem 0.8rem 10rem;
+  margin: 0 0.3rem 0.8rem 20rem;
   padding: 10px;
   border-radius: 5px;
 }
@@ -209,7 +218,8 @@ a:hover {
   overflow: hidden;
   background-color: rgba(0, 0, 0, 0.9);
   opacity: 0;
-  transition: opacity 0.5s ease-in-out;
+  transition: opacity 3s ease-in-out;
+  z-index: 1;
 }
 
 /* Join Section */
@@ -294,7 +304,7 @@ select {
     border-right: 1px solid #666;
     transform: translateX(-400px);
     transition: transform 0.5s ease-in-out;
-    z-index: 2;
+    z-index: 1;
     opacity: 0.95;
   }
 
@@ -308,5 +318,9 @@ select {
 
   .chat-main #chat-messages div {
     margin: 0 0 15px;
+  }
+
+  .join-container {
+    max-width: 350px;
   }
 }
