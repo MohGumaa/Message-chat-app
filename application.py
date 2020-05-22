@@ -1,24 +1,56 @@
 import os
 
+from time import localtime, strftime
 from flask import Flask, render_template
-from flask_socketio import SocketIO, emit
+from flask_socketio import SocketIO, emit, send, join_room, leave_room
 
 app = Flask(__name__)
-#os.getenv("SECRET_KEY")
-app.config["SECRET_KEY"] ="secert!"
+app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
 socketio = SocketIO(app)
 
-channels = []
+rooms = ["public",]
+
 
 @app.route("/")
 def index():
-    return render_template("index.html", channels=channels)
+    return render_template("index.html", rooms=rooms)
 
-@socketio.on("new_channel")
-def new_channel(channelName):
-    """Check if the channel if exist return error else add to list."""
-    if channelName in channels:
-        emit("channel list", {"success": False, "error":"Channel already exist!"})
+# Listen to event send message
+@socketio.on('message')
+def handle_message(data):
+    # {'time': strftime('%b-%d %H:%M', localtime())}
+    send({'username': data['username'], 'msg': data['msg'], 'time': strftime(
+        '%I:%M %p', localtime())}, room=data['room'])
+
+
+@socketio.on('join')
+def handle_join(data):
+    join_room(data['room'])
+    send({'msg': data['username'] + " has joined the " +
+          data['room'] + " room!", 'error': 'success-msg'}, room=data['room'])
+
+
+@socketio.on('leave')
+def handle_leave(data):
+    leave_room(data['room'])
+    send({'msg': data['username'] + " has left the " +
+          data['room'] + " room!", 'error': 'error-msg'}, room=data['room'])
+
+
+@socketio.on("new room")
+def new_room(data):
+    """Check if the room if exist return error else announced event
+    "create room" event to everyone."""
+
+    newRoom = data['new_room'].lower()
+    if newRoom in rooms:
+        emit("create room", {"success": False, "error": "Room name already exist!, Please type other name."})
+        print(rooms, newRoom)
     else:
-        channels.append(channelName)
-        emit("channel list", {"success": True, "channels":channels}, broadcast=True)
+        rooms.append(newRoom)
+        print(rooms, newRoom)
+        emit("create room", {"success": True, "username": data['username'], "room": newRoom.capitalize()}, broadcast=True)
+        emit("join room", {"username": data['username'], "room": newRoom.capitalize()})
+
+if __name__ == '__main__':
+    socketio.run(app, debug=True)
