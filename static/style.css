@@ -289,20 +289,20 @@ select {
 
   .chat-main {
     display: block;
-    min-height: 81vh;
-    max-height: 81vh;
+    min-height: 83vh;
+    max-height: 83vh;
     height: 100%;
   }
 
   .chat-sidebar {
-    display: block;
+    display: none;
     position: absolute;
     top: 0;
     left: 0;
     width: 60%;
     height: 97%;
     border-right: 1px solid #666;
-    transform: translateX(-400px);
+    transform: translateX(-500px);
     transition: transform 0.5s ease-in-out;
     z-index: 1;
     opacity: 0.95;
@@ -314,6 +314,10 @@ select {
 
   .chat-sidebar .form-control input {
     font-size: 12px;
+  }
+
+  #chat-messages {
+    max-height: 605px;
   }
 
   .chat-main #chat-messages div {
