@@ -10,4 +10,4 @@ pip3 install -r requirements.txt
 export FLASK_APP=application.py
 flask run
 ```
-__Link__:
+__Link__ : [https://wchat-app.herokuapp.com/](https://wchat-app.herokuapp.com/ )
