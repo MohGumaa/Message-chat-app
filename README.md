@@ -1,6 +1,13 @@
-# Project 2(Flask Message)
+# Project 2(Flask Message):
+###### ***Web Programming with Python and JavaScript Course.***
+****
+Create simple Responsive WChat App using HTML5-CSS3-JavaScript and
+Python(Flask Framework) Also using LocalStorage.
 
-Web Programming with Python and JavaScript
-
-Create Responsive webiste messageChat with HTML5-CSS3-JavaScript and 
-Python(Flask Framework) Also using Localstorage. 
+## How to run App:
+```
+pip3 install -r requirements.txt
+export FLASK_APP=application.py
+flask run
+```
+__Link__:
