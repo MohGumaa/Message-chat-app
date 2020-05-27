@@ -8,9 +8,8 @@ app = Flask(__name__)
 app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
 socketio = SocketIO(app)
 
-rooms = ["public",]
+rooms = ["public"]
 messages = {"Public":[]}
-
 
 @app.route("/")
 def index():
