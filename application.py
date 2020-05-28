@@ -64,4 +64,4 @@ def new_room(data):
         emit("join room", {"username": data['username'], "room": newRoom.capitalize()})
 
 if __name__ == '__main__':
-    socketio.run(app)
+    app.run()
