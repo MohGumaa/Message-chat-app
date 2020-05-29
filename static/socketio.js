@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Listen to button click on small screen to toggle class "show"
   document.querySelector(".menu-btn").addEventListener("click", () => {
     document.querySelector(".chat-sidebar").classList.toggle("show");
+    console.log('cilck')
   });
 
 
