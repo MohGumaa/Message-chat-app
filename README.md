@@ -11,3 +11,6 @@ export FLASK_APP=application.py
 flask run
 ```
 __Link__ : [https://wchat-app.herokuapp.com/](https://wchat-app.herokuapp.com/ )
+
+
+#### Very special thanks to traversy media for inspiration of front-end design.
