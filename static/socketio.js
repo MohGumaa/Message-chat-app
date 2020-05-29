@@ -11,12 +11,16 @@ document.addEventListener("DOMContentLoaded", () => {
   let user = JSON.parse(localStorage.getItem('user'));
   let name;
 
-  // Listen to button click on small screen to toggle class "show"
-  document.querySelector(".menu-btn").addEventListener("click", () => {
+  // For Iphone
+  document.querySelector('.menu-btn').addEventListener('touchstart', () =>{
     document.querySelector(".chat-sidebar").classList.toggle("show");
     console.log('cilck')
   });
 
+  // Listen to button click on small screen to toggle class "show"
+  document.querySelector(".menu-btn").addEventListener("click", () => {
+    document.querySelector(".chat-sidebar").classList.toggle("show");
+  });
 
   // Connect to websocket
   var socket = io.connect(
