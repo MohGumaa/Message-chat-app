@@ -25,19 +25,21 @@ def handle_message(data):
         messages(data['room']).pop(0)
 
     messages[data['room']].append(message_data)
-    print(messages[data['room']])
+
     send(message_data, room=data['room'])
     # {'time': strftime('%b-%d %H:%M', localtime())}
 
 
 @socketio.on('join')
 def handle_join(data):
+    print(data)
     join_room(data['room'])
     emit("my event", messages[data['room']]);
     send({'msg': data['username'] + " has joined the " + data['room'] + " room!", 'error': 'success-msg'}, room=data['room'])
 
 @socketio.on('leave')
 def handle_leave(data):
+    print(data)
     leave_room(data['room'])
     send({'msg': data['username'] + " has left the " +
           data['room'] + " room!", 'error': 'error-msg'}, room=data['room'])
@@ -51,7 +53,7 @@ def new_room(data):
     newRoom = data['new_room'].lower()
     if newRoom in rooms:
         emit("create room", {"success": False, "error": "Room name already exist!, Please type other name."});
-        print(rooms, newRoom)
+
     else:
         # try to add iit to messages
         rooms.append(newRoom)
@@ -59,7 +61,6 @@ def new_room(data):
         # Create list messages for new channel
         messages[newRoom.capitalize()] = []
 
-        print(rooms, newRoom)
         emit("create room", {"success": True, "username": data['username'], "room": newRoom.capitalize()}, broadcast=True)
         emit("join room", {"username": data['username'], "room": newRoom.capitalize()})
 

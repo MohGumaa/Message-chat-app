@@ -11,16 +11,16 @@ document.addEventListener("DOMContentLoaded", () => {
   let user = JSON.parse(localStorage.getItem('user'));
   let name;
 
-  // For Iphone
-  document.querySelector('.menu-btn').addEventListener('touchstart', () =>{
-    document.querySelector(".chat-sidebar").classList.toggle("show");
-    console.log('cilck')
-  });
-
   // Listen to button click on small screen to toggle class "show"
   document.querySelector(".menu-btn").addEventListener("click", () => {
     document.querySelector(".chat-sidebar").classList.toggle("show");
   });
+
+  // For Iphone
+  // document.querySelector('.menu-btn').addEventListener('touchstart', () =>{
+  //   document.querySelector(".chat-sidebar").classList.toggle("show");
+  //   console.log('cilck')
+  // });
 
   // Connect to websocket
   var socket = io.connect(
@@ -100,7 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // When a new room is announced,check add to the unordered list
   socket.on("create room", (data) => {
-
+      print(data);
     // If response success the add new room to list else print error
     if (data.success) {
       const li = document.createElement('li');
@@ -141,6 +141,8 @@ document.addEventListener("DOMContentLoaded", () => {
          const error = "error-msg";
          printMsg(msg, error);
        } else {
+         const user = JSON.parse(localStorage.getItem('user'));
+         print(user,(user.username, room),(user.username, newRoom));
          leaveRoom(user.username, room);
          joinRoom(user.username, newRoom);
          room = newRoom;
