@@ -16,12 +16,6 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector(".chat-sidebar").classList.toggle("show");
   });
 
-  // For Iphone
-  // document.querySelector('.menu-btn').addEventListener('touchstart', () =>{
-  //   document.querySelector(".chat-sidebar").classList.toggle("show");
-  //   console.log('cilck')
-  // });
-
   // Connect to websocket
   var socket = io.connect(
     location.protocol + "//" + document.domain + ":" + location.port
@@ -67,7 +61,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Listen to event for login out
   document.querySelector(".chat-header .btn").addEventListener("click", (e) => {
-
     leaveRoom(user.username, user.room);
     localStorage.clear();
     setTimeout(showName, 50);
@@ -93,14 +86,14 @@ document.addEventListener("DOMContentLoaded", () => {
   // function for enter key
   document.querySelector('#channel-name').addEventListener('keyup', e => {
     e.preventDefault();
-    if(e.keyCode === 13){
+    if (e.keyCode === 13) {
       document.querySelector('#new-channel').click();
     }
   });
 
   // When a new room is announced,check add to the unordered list
   socket.on("create room", (data) => {
-      print(data);
+
     // If response success the add new room to list else print error
     if (data.success) {
       const li = document.createElement('li');
@@ -116,7 +109,6 @@ document.addEventListener("DOMContentLoaded", () => {
       printMsg(data.error, error);
     }
   });
-
 
   // join my own room create
   socket.on('join room', data => {
@@ -229,5 +221,4 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault();
     };
   }
-
 });
