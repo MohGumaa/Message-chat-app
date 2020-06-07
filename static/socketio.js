@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (data.username === user.username) {
       const div = document.createElement("div");
       div.classList.add("message-mine");
-      div.innerHTML = `<p class="message-name">${data.username} <span>${data.time}</span></p>
+      div.innerHTML = `<p class="message-name">${data.username} <span>${data.time}</span><span class="closeBtn">&times;</span></p>
       <p class="text">${data.msg}</p>
       `;
       chatMessage.append(div);
@@ -134,7 +134,6 @@ document.addEventListener("DOMContentLoaded", () => {
          printMsg(msg, error);
        } else {
          const user = JSON.parse(localStorage.getItem('user'));
-         print(user,(user.username, room),(user.username, newRoom));
          leaveRoom(user.username, room);
          joinRoom(user.username, newRoom);
          room = newRoom;
@@ -149,24 +148,40 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Display pervious messages
   socket.on("my event", messages => {
-    messages.forEach((data) => {
-      if (data.username === user.username) {
-        const div = document.createElement("div");
-        div.classList.add("message-mine");
-        div.innerHTML = `<p class="message-name">${data.username} <span>${data.time}</span></p>
-        <p class="text">${data.msg}</p>
-        `;
-        chatMessage.append(div);
-      } else if (typeof data.username !== 'undefined'){
-        const div = document.createElement("div");
-        div.classList.add("message");
-        div.innerHTML = `<p class="message-name">${data.username} <span>${data.time}</span></p>
-        <p class="text">${data.msg}</p>
-        `;
-        chatMessage.append(div);
-      }
-    });
+      chatMessage.innerHTML = '';
+      messages.forEach((data) => {
+          if (data.username === user.username) {
+              const div = document.createElement("div");
+              div.classList.add("message-mine");
+              div.innerHTML = `<p class="message-name">${data.username} <span>${data.time}</span><span class="closeBtn">&times;</span></p>
+              <p class="text">${data.msg}</p>
+              `;
+              chatMessage.append(div);
+          } else if (typeof data.username !== 'undefined'){
+              const div = document.createElement("div");
+              div.classList.add("message");
+              div.innerHTML = `<p class="message-name">${data.username} <span>${data.time}</span></p>
+              <p class="text">${data.msg}</p>
+              `;
+              chatMessage.append(div);
+          }     
+      });
+    chatMessage.scrollTop = chatMessage.scrollHeight;
   });
+
+  // Delete my message event
+  document.addEventListener('click', e => {
+      if (e.target.className === 'closeBtn'){
+          socket.emit('delete-message', {
+              'username': user.username,
+              'msg':e.target.parentElement.nextElementSibling.innerHTML,
+              'time': e.target.previousElementSibling.innerHTML,
+              'room'  : room
+          });
+      }
+  });
+
+
 
 
   //*** Functions Parts ***//

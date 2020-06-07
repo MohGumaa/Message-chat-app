@@ -172,6 +172,21 @@ a:hover {
   margin: 0 0.3rem 0.8rem 20rem;
   padding: 10px;
   border-radius: 5px;
+  position: relative;
+}
+
+#chat-messages .closeBtn {
+    position: absolute;
+    top: 10%;
+    right: 5%;
+    transform: translate(-5%, -10%);
+    color: #333;
+}
+
+#chat-messages .closeBtn:hover {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 #chat-messages .message-name {
