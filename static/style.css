@@ -22,7 +22,7 @@ body {
   background: url("images/chat-bg.jpg");
   color: #fff;
   margin: 20px;
-  /* line-height: 1.5; */
+  line-height: 1.5;
 }
 
 ul {
@@ -70,13 +70,12 @@ a:hover {
   cursor: pointer;
 }
 
-/* Chat Section */
-
+/********************* Chat Section ********************/
 .chat-container {
   max-width: 1100px;
   background-color: #fff;
   margin: 30px auto;
-  height: 580px;
+  min-height: 580px;
   overflow: hidden;
 }
 
@@ -103,11 +102,12 @@ a:hover {
   overflow: hidden;
 }
 
+/* Chat Sidebar Section */
 .chat-sidebar {
   background-color: var(--dark-color-b);
   padding: 20px 20px 60px;
   height: 462px;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .chat-sidebar h5 {
@@ -153,11 +153,13 @@ a:hover {
   cursor: pointer;
 }
 
+/* Chat Message Section */
+
 #chat-messages {
   color: #000;
   padding: 10px;
   max-height: 460px;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 #chat-messages .message {
@@ -201,6 +203,8 @@ a:hover {
   color: #666;
 }
 
+/* Sending Message Section */
+
 .chat-form-container {
   padding: 9px;
   background-color: var(--dark-color-a);
@@ -226,7 +230,7 @@ a:hover {
   border-left: 1px solid #888;
 }
 
-/* Join Part */
+/********************* Join Part *********************/
 #modal {
   display: none;
   position: fixed;
@@ -242,6 +246,7 @@ a:hover {
 }
 
 /* Join Section */
+
 .join-container {
   max-width: 500px;
   margin: 80px auto;
@@ -282,7 +287,7 @@ select {
   margin-top: 10px;
 }
 
-/* Media Section */
+/********************* Media Section *********************/
 
 @media (max-width: 768px) {
   body {
@@ -309,7 +314,10 @@ select {
 
   .chat-main {
     display: block;
-    overflow: visible;
+    overflow-y: hidden;
+    min-height: 84vh;
+    max-height: 84vh;
+    position: relative;
   }
 
   .chat-sidebar {
@@ -317,10 +325,10 @@ select {
     position: absolute;
     top: 0;
     left: 0;
-    width: 60%;
-    height: 97%;
+    width: 70%;
+    height: 100%;
     border-right: 1px solid #666;
-    transform: translateX(-450px);
+    transform: translateX(-600px);
     transition: transform 0.5s ease-in-out;
     z-index: 1;
     opacity: 0.95;
@@ -335,8 +343,8 @@ select {
   }
 
   #chat-messages {
-    min-height: 80vh;
-    max-height: 80vh;
+    min-height: 84vh;
+    max-height: 84vh;
   }
 
   .chat-main #chat-messages div {

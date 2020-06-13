@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+
   // Select DOM
   const nameShow = document.querySelector('#username-show');
   const modal = document.querySelector('#modal');
@@ -7,8 +8,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const chatMessage = document.querySelector('#chat-messages');
   const inputMessage = document.querySelector('#msg');
   const roomName = document.querySelector('#room-name');
-  let room;
   let user = JSON.parse(localStorage.getItem('user'));
+  let room;
   let name;
 
   // Listen to button click on small screen to toggle class "show"
@@ -37,29 +38,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Display message
   socket.on('message', data => {
+
+    // Check is message from you or other user or system message
     if (data.username === user.username) {
-      const div = document.createElement("div");
-      div.classList.add("message-mine");
-      div.innerHTML = `<p class="message-name">${data.username} <span>${data.time}</span><span class="closeBtn">&times;</span></p>
-      <p class="text">${data.msg}</p>
-      `;
-      chatMessage.append(div);
-    } else if (typeof data.username !== 'undefined'){
-      const div = document.createElement("div");
-      div.classList.add("message");
-      div.innerHTML = `<p class="message-name">${data.username} <span>${data.time}</span></p>
-      <p class="text">${data.msg}</p>
-      `;
-      chatMessage.append(div);
+      printMyMessage(data);
+    } else if (typeof data.username !== 'undefined') {
+      printOtherMessage(data)
     } else {
       printMsg(data.msg, data.error);
     }
-
     chatMessage.scrollTop = chatMessage.scrollHeight;
   });
 
-
-  // Listen to event for login out
+  // Listen to event for login out leave romm then clear name and room from localStorage
   document.querySelector(".chat-header .btn").addEventListener("click", (e) => {
     leaveRoom(user.username, user.room);
     localStorage.clear();
@@ -67,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault();
   });
 
-  // Listen to send message event
+  // Listen to send message event to socketio
   document.querySelector('#chat-form').onsubmit = e => {
     socket.send({'username': user.username, 'msg': inputMessage.value, 'room': room});
     inputMessage.value = '';
@@ -75,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault();
   }
 
-  // Listen to submit button to emit a "new room" event
+  // Listen to event of creating new room
   document.querySelector("#new-channel").onclick = () => {
     user = JSON.parse(localStorage.getItem('user'));
     const channelName = document.querySelector("#channel-name");
@@ -83,7 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
     channelName.value = "";
   };
 
-  // function for enter key
+  // function for enter key to sumbit new room name
   document.querySelector('#channel-name').addEventListener('keyup', e => {
     e.preventDefault();
     if (e.keyCode === 13) {
@@ -91,15 +82,16 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // When a new room is announced,check add to the unordered list
+  // When a new room is announced, add to the unordered list
   socket.on("create room", (data) => {
 
-    // If response success the add new room to list else print error
+    // If response success then add new room to list aslo to select input else print error
     if (data.success) {
       const li = document.createElement('li');
       li.classList.add("select-room");
       li.innerHTML = data.room;
       document.querySelector('#rooms').append(li);
+
       const opt = document.createElement('option');
       opt.value = data.room;
       opt.innerHTML = data.room;
@@ -112,22 +104,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // join my own room create
   socket.on('join room', data => {
-    const name = user.username;
-    leaveRoom(name, room);
-    const createRoom = data.room;
-    joinRoom(name, createRoom);
-    room = createRoom;
-    const userUpdate = {
-      username: name,
-      room: createRoom
-    }
-   localStorage.setItem('user',JSON.stringify(userUpdate));
-  })
+      const name = user.username;
+      leaveRoom(name, room);
+      const createRoom = data.room;
+      joinRoom(name, createRoom);
+      room = createRoom;
+      const userUpdate = {
+          username: name,
+          room: createRoom
+      }
+      localStorage.setItem('user',JSON.stringify(userUpdate));
+  });
 
-  // Room Selection
+  // Room Selection when it click in room
   document.querySelector("#rooms").addEventListener("click", (e) => {
     if (e.target && e.target.matches("li.select-room")) {
        let newRoom = e.target.innerHTML;
+
+       // Check if user in same room or not
        if (newRoom === room){
          const msg = `You are already in ${room} room`;
          const error = "error-msg";
@@ -151,25 +145,15 @@ document.addEventListener("DOMContentLoaded", () => {
       chatMessage.innerHTML = '';
       messages.forEach((data) => {
           if (data.username === user.username) {
-              const div = document.createElement("div");
-              div.classList.add("message-mine");
-              div.innerHTML = `<p class="message-name">${data.username} <span>${data.time}</span><span class="closeBtn">&times;</span></p>
-              <p class="text">${data.msg}</p>
-              `;
-              chatMessage.append(div);
+              printMyMessage(data);
           } else if (typeof data.username !== 'undefined'){
-              const div = document.createElement("div");
-              div.classList.add("message");
-              div.innerHTML = `<p class="message-name">${data.username} <span>${data.time}</span></p>
-              <p class="text">${data.msg}</p>
-              `;
-              chatMessage.append(div);
-          }     
+              printOtherMessage(data);
+          }
       });
     chatMessage.scrollTop = chatMessage.scrollHeight;
   });
 
-  // Delete my message event
+  // Delete my message event from room
   document.addEventListener('click', e => {
       if (e.target.className === 'closeBtn'){
           socket.emit('delete-message', {
@@ -181,33 +165,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
   });
 
-
-
-
-  //*** Functions Parts ***//
-
-  // Leave room function
-  function leaveRoom(name, room) {
-    socket.emit("leave", {'username': name, 'room': room });
-  }
-
-  // Join room function
-  function joinRoom(name, room) {
-
-    socket.emit("join", { 'username': name, 'room': room });
-    roomName.innerHTML = room;
-    chatMessage.innerHTML = "";
-    inputMessage.focus();
-  }
-
-  // Print Message
-  function printMsg(msg, error) {
-    const div = document.createElement("div");
-    div.classList.add("message-mine");
-    div.innerHTML = `<p class="${error} text">${msg}</p>`;
-    chatMessage.append(div);
-  }
-
+  //******************** Functions Parts ************************//
   function showName(){
     /*
     When page loadeded check username if not exist asked user for
@@ -220,6 +178,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // listen to submit of name and room choose form
     document.querySelector("#join-form").onsubmit = (e) => {
+
       // Store username and room in localStorage and send user to room chat
       const userDetail = {
         username: usernameEntry.value,
@@ -232,8 +191,46 @@ document.addEventListener("DOMContentLoaded", () => {
       nameShow.innerHTML = user.username;
       room = user.room;
       joinRoom(usernameEntry.value, roomSelect.value);
+
       // Prevent form submit
       e.preventDefault();
     };
   }
+
+  function printMyMessage(data) {
+      const div = document.createElement("div");
+      div.classList.add("message-mine");
+      div.innerHTML = `<p class="message-name">${data.username} <span>${data.time}</span><span class="closeBtn">&times;</span></p>
+      <p class="text">${data.msg}</p>
+      `;
+      chatMessage.append(div);
+  }
+
+  function printOtherMessage(data) {
+      const div = document.createElement("div");
+      div.classList.add("message");
+      div.innerHTML = `<p class="message-name">${data.username} <span>${data.time}</span></p>
+      <p class="text">${data.msg}</p>
+      `;
+      chatMessage.append(div);
+  }
+
+  function leaveRoom(name, room) {
+    socket.emit("leave", {'username': name, 'room': room });
+  }
+
+  function joinRoom(name, room) {
+    socket.emit("join", { 'username': name, 'room': room });
+    roomName.innerHTML = room;
+    chatMessage.innerHTML = "";
+    inputMessage.focus();
+  }
+
+  function printMsg(msg, error) {
+    const div = document.createElement("div");
+    div.classList.add("message-mine");
+    div.innerHTML = `<p class="${error} text">${msg}</p>`;
+    chatMessage.append(div);
+  }
+
 });

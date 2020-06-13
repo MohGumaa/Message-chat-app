@@ -2,6 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="description" content="Building an Online messaging server
+    using flask socket IO(python). User will able to login and create new
+    channel for chatting or choose exist one.">
+    <meta name="keywords" content="HTML, CSS, JavaScript, SocketIO, Python, Flask">
+    <meta name="author" content="Mohamed Gumaa">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
@@ -10,12 +15,13 @@
       src="https://kit.fontawesome.com/c61ad57674.js"
       crossorigin="anonymous"
     ></script>
-
     <!-- StyleSheet file -->
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='style.css') }}"
     />
+    <link rel="icon" href="{{ url_for('static', filename='images/favicon.png') }}">
+
     <title>WChat App</title>
   </head>
   <body>

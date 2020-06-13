@@ -54,7 +54,6 @@ def handle_leave(data):
     send({'msg': data['username'] + " has left the " +
           data['room'] + " room!", 'error': 'error-msg'}, room=data['room'])
 
-
 @socketio.on("new room")
 def new_room(data):
     """Check if the room if exist return error else announced event
@@ -70,7 +69,7 @@ def new_room(data):
 
         # Create list messages for new channel
         messages[newRoom.capitalize()] = []
-        print(messages)
+
         emit("create room", {"success": True, "username": data['username'], "room": newRoom.capitalize()}, broadcast=True)
         emit("join room", {"username": data['username'], "room": newRoom.capitalize()})
 
